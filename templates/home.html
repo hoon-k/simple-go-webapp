@@ -1,0 +1,15 @@
+{{ define "content" }}
+
+<p>
+    Please see the following list.
+</p>
+
+<ul>
+    {{ range . }}
+    <li>
+        {{ .Name }} | ${{ .Price }}
+    </li>
+    {{ end }}
+</ul>
+
+{{ end }}

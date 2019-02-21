@@ -1,0 +1,25 @@
+{{ define "master" }}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=9">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>My Home Page</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container mx-auto">
+            {{ template "header" }}
+            {{ template "nav" }}
+            <div class="content">
+                {{ template "content" . }}
+            </div>
+            {{ template "footer" }}
+        </div>
+    </body>
+</html>
+
+{{ end }}
