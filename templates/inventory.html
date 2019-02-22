@@ -1,0 +1,15 @@
+{{ define "content" }}
+
+<p>
+    The list of the inventory of {{ .Name }}
+</p>
+
+<ul>
+    {{ range .Items }}
+    <li>
+        <a href="detail?cid={{$.ID}}&id={{.ID}}">{{ .Name }} | ${{ .Price }}</a>
+    </li>
+    {{ end }}
+</ul>
+
+{{ end }}

@@ -1,15 +1,7 @@
 {{ define "content" }}
 
 <p>
-    Please see the following list.
+    Welcome to our store.
 </p>
-
-<ul>
-    {{ range . }}
-    <li>
-        <a href="detail?id={{.ID}}">{{ .Name }} | ${{ .Price }}</a>
-    </li>
-    {{ end }}
-</ul>
 
 {{ end }}
