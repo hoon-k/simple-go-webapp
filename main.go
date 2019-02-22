@@ -1,7 +1,6 @@
 package main
 
 import (
-    "fmt"
     "net/http"
     "html/template"
 )
@@ -12,26 +11,39 @@ type Item struct {
     Price   float64
 }
 
-func headers(w http.ResponseWriter, r *http.Request) {
-    h := r.Header
-    fmt.Fprintln(w, h)
+var baseTemplates = []string {
+    "templates/master.html",
+    "templates/header.html",
+    "templates/footer.html",
+    "templates/nav.html",
+}
+
+var someData = []Item {
+    Item { "Apple", 2.99 },
+    Item { "Pear", 3.99 },
+    Item { "Orange", 4.99 },
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-    someData := []Item {
-        Item { "Apple", 2.99 },
-        Item { "Pear", 3.99 },
-        Item { "Orange", 4.99 },
-    }
+    renderPage(w, "templates/home.html", someData)
+}
 
-    templates := template.Must(template.ParseGlob("templates/*.html"))
-    templates.ExecuteTemplate(w, "master", someData)
+func detail(w http.ResponseWriter, r *http.Request) {
+    renderPage(w, "templates/detail.html", someData[0])
+}
+
+func renderPage(w http.ResponseWriter, templateFile string, data interface{}) {
+    files := append(baseTemplates, templateFile)
+    templates := template.Must(template.ParseFiles(files...))
+    templates.ExecuteTemplate(w, "master", data)
 }
 
 func main() {
-     files := http.FileServer(http.Dir("static"))
+    files := http.FileServer(http.Dir("static"))
     http.Handle("/static/", http.StripPrefix("/static/", files))
 
+    http.HandleFunc("/", home)
     http.HandleFunc("/home", home)
+    http.HandleFunc("/detail", detail)
     http.ListenAndServe(":8080", nil)
 }
