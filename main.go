@@ -3,10 +3,11 @@ package main
 import (
     "net/http"
     "html/template"
+    "strconv"
 )
 
-// Item struct
-type Item struct {
+type item struct {
+    ID      int
     Name    string
     Price   float64
 }
@@ -18,10 +19,10 @@ var baseTemplates = []string {
     "templates/nav.html",
 }
 
-var someData = []Item {
-    Item { "Apple", 2.99 },
-    Item { "Pear", 3.99 },
-    Item { "Orange", 4.99 },
+var someData = []item {
+    item { 1, "Apple", 2.99 },
+    item { 2, "Pear", 3.99 },
+    item { 3, "Orange", 4.99 },
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -29,7 +30,8 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func detail(w http.ResponseWriter, r *http.Request) {
-    renderPage(w, "templates/detail.html", someData[0])
+    id, _ := strconv.ParseInt(r.URL.Query().Get("id"), 0, 64)
+    renderPage(w, "templates/detail.html", someData[id - 1])
 }
 
 func renderPage(w http.ResponseWriter, templateFile string, data interface{}) {

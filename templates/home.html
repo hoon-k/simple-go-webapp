@@ -7,7 +7,7 @@
 <ul>
     {{ range . }}
     <li>
-        {{ .Name }} | ${{ .Price }}
+        <a href="detail?id={{.ID}}">{{ .Name }} | ${{ .Price }}</a>
     </li>
     {{ end }}
 </ul>
