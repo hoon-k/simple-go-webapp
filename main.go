@@ -6,7 +6,7 @@ import (
 )
 
 type item struct {
-    ID      int
+    ID      string
     Name    string
     Price   float64
 }
@@ -37,6 +37,8 @@ func registerHandlers() {
     http.HandleFunc("/home", home)
     http.HandleFunc("/detail", detail)
     http.HandleFunc("/inventory", inventoryHandler)
+    http.HandleFunc("/cart", cartHandler)
+    http.HandleFunc("/addItem", cartHandler)
 }
 
 func getData() {
@@ -44,9 +46,9 @@ func getData() {
         ID: "1",
         Name: "Fruits",
         Items: []item {
-            item { 1, "Apple", 2.99 },
-            item { 2, "Pear", 3.99 },
-            item { 3, "Orange", 4.99 },
+            item { "f1", "Apple", 2.99 },
+            item { "f2", "Pear", 3.99 },
+            item { "f3", "Orange", 4.99 },
         },
     }
 
@@ -54,9 +56,9 @@ func getData() {
         ID: "2",
         Name: "Vegetables",
         Items: []item {
-            item { 1, "Carrots", 2.99 },
-            item { 2, "Cabbage", 3.99 },
-            item { 3, "Cucumber", 4.99 },
+            item { "v1", "Carrots", 2.99 },
+            item { "v2", "Cabbage", 3.99 },
+            item { "v3", "Cucumber", 4.99 },
         },
     }
 
@@ -64,9 +66,9 @@ func getData() {
         ID: "3",
         Name: "Grains",
         Items: []item {
-            item { 1, "Oats", 2.99 },
-            item { 2, "Rice", 3.99 },
-            item { 3, "Wheat", 4.99 },
+            item { "g1", "Oats", 2.99 },
+            item { "g2", "Rice", 3.99 },
+            item { "g3", "Wheat", 4.99 },
         },
     }
 }

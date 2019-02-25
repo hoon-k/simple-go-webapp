@@ -1,0 +1,22 @@
+{{ define "content" }}
+
+<p>
+    Items in your cart
+</p>
+{{ if . }}
+    <table>
+        <th>
+            <td>Name</td>
+            <td>Unit price</td>
+            <td>Quantity</td>
+            <td>Item total</td>
+        </th>
+        <tr>
+
+        </tr>
+    </table>
+{{ else }}
+    <p>Cart is empty</p>
+{{ end }}
+
+{{ end }}
