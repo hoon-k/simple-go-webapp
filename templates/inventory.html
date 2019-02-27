@@ -4,12 +4,28 @@
     The list of the inventory of {{ .Name }}
 </p>
 
-<ul>
-    {{ range .Items }}
-    <li>
-        <a href="detail?cid={{$.ID}}&id={{.ID}}">{{ .Name }} | ${{ .Price }}</a>
-    </li>
-    {{ end }}
-</ul>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Unit price</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+        {{ range .Items }}
+        <form method="POST" action="/addItem">
+            <tr>
+                <td><a href="detail?cid={{$.ID}}&id={{.ID}}">{{ .Name }}</a></td>
+                <td>${{ .Price }}</td>
+                <td><input type="text" maxlength="2" size="2" name="{{ .ID }}"></td>
+                <td><input type="submit" value="Add"></td>
+                <input type="hidden" name="id" value="{{ .ID }}">
+                <input type="hidden" name="price" value="{{ .Price }}">
+            </tr>
+        </form>
+        {{ end }}
+    </table>
+
+
 
 {{ end }}
