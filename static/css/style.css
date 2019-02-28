@@ -1,3 +1,7 @@
 ul li {
     list-style: none;
 }
+
+td {
+    width: 100px;
+}

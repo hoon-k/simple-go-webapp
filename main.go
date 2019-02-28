@@ -25,6 +25,7 @@ var baseTemplates = []string {
 }
 
 var inventoryData = make(map[string]inventory)
+var allItems = make(map[string]item)
 
 func renderPage(w http.ResponseWriter, templateFile string, data interface{}) {
     files := append(baseTemplates, templateFile)
@@ -42,6 +43,16 @@ func registerHandlers() {
 }
 
 func getData() {
+    allItems["f1"] = item { "f1", "Apple", 2.99 }
+    allItems["f2"] = item { "f2", "Pear", 3.99 }
+    allItems["f3"] = item { "f3", "Orange", 4.99 }
+    allItems["v1"] = item { "v1", "Carrots", 2.99 }
+    allItems["v2"] = item { "v2", "Cabbage", 3.99 }
+    allItems["v3"] = item { "v3", "Cucumber", 4.99 }
+    allItems["g1"] = item { "g1", "Oats", 2.99 }
+    allItems["g2"] = item { "g2", "Rice", 3.99 }
+    allItems["g3"] = item { "g3", "Wheat", 4.99 }
+
     fruits := make(map[string]item)
     fruits["f1"] = item { "f1", "Apple", 2.99 }
     fruits["f2"] = item { "f2", "Pear", 3.99 }

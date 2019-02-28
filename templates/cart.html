@@ -5,15 +5,20 @@
 </p>
 {{ if . }}
     <table>
-        <th>
-            <td>Name</td>
-            <td>Unit price</td>
-            <td>Quantity</td>
-            <td>Item total</td>
-        </th>
         <tr>
-
+            <th>Name</th>
+            <th>Unit price</th>
+            <th>Quantity</th>
+            <th>Item total</th>
         </tr>
+        {{ range $key, $value := . }}
+            <tr>
+                <td>{{ $value.UnitItem.Name }}</td>
+                <td>{{ $value.UnitItem.Price }}</td>
+                <td>{{ $value.Quantity }}</td>
+                <td>{{ $value.Total }}</td>
+            </tr>
+        {{ end }}
     </table>
 {{ else }}
     <p>Cart is empty</p>
