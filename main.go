@@ -40,6 +40,7 @@ func registerHandlers() {
     http.HandleFunc("/inventory", inventoryHandler)
     http.HandleFunc("/cart", cartHandler)
     http.HandleFunc("/addItem", addItem)
+    http.HandleFunc("/inventory-data", inventoryRawData)
 }
 
 func getData() {
