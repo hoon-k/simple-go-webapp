@@ -33,6 +33,7 @@ func addItem(w http.ResponseWriter, r *http.Request) {
         }
     } else {
         cart[itemID].Quantity += int(quantity)
+        cart[itemID].Total += totalPrice
     }
 
     renderPage(w, "templates/cart.html", cart)

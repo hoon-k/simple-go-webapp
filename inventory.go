@@ -12,6 +12,6 @@ func inventoryHandler(w http.ResponseWriter, r *http.Request) {
 
 func inventoryRawData(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
-    json, _ := json.Marshal(allItems)
+    json, _ := json.Marshal(&allItems)
     w.Write(json)
 }
