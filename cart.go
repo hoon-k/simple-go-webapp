@@ -4,7 +4,6 @@ import (
     "net/http"
     "strconv"
     "math"
-    "fmt"
 )
 
 type cartItem struct {
@@ -12,7 +11,6 @@ type cartItem struct {
     UnitItem        item
     Quantity        int
     Total           float64
-    FormattedTotal  string
 }
 
 var cart = make(map[string]*cartItem)
@@ -33,12 +31,10 @@ func addItem(w http.ResponseWriter, r *http.Request) {
             UnitItem: allItems[itemID],
             Quantity: int(quantity),
             Total: totalPrice,
-            FormattedTotal: fmt.Sprintf("%.2f", totalPrice),
         }
     } else {
         cart[itemID].Quantity += int(quantity)
         cart[itemID].Total += totalPrice
-        cart[itemID].FormattedTotal = fmt.Sprintf("%.2f", cart[itemID].Total)
     }
 
     renderPage(w, "templates/cart.html", cart)

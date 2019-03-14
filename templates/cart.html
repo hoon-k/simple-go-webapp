@@ -16,7 +16,7 @@
                 <td>{{ $value.UnitItem.Name }}</td>
                 <td>{{ $value.UnitItem.Price }}</td>
                 <td>{{ $value.Quantity }}</td>
-                <td>{{ $value.FormattedTotal }}</td>
+                <td>{{ $value.Total | printf "%.2f" }}</td>
             </tr>
         {{ end }}
     </table>
