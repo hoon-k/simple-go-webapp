@@ -39,6 +39,7 @@ func registerHandlers() {
     http.HandleFunc("/detail", detail)
     http.HandleFunc("/inventory", inventoryHandler)
     http.HandleFunc("/cart", cartHandler)
+    http.HandleFunc("/cart-data", cartData)
     http.HandleFunc("/addItem", addItem)
     http.HandleFunc("/inventory-data", inventoryRawData)
 }

@@ -4,6 +4,7 @@ import (
     "net/http"
     "strconv"
     "math"
+    "encoding/json"
 )
 
 type cartItem struct {
@@ -38,4 +39,10 @@ func addItem(w http.ResponseWriter, r *http.Request) {
     }
 
     renderPage(w, "templates/cart.html", cart)
+}
+
+func cartData(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+    json, _ := json.Marshal(&cart)
+    w.Write(json)
 }
