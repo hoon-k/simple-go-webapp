@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "html/template"
+    "fmt"
 )
 
 type item struct {
@@ -27,9 +28,17 @@ var baseTemplates = []string {
 var inventoryData = make(map[string]inventory)
 var allItems = make(map[string]item)
 
+func formatCurrency(value float64) string {
+    return "$" + fmt.Sprintf("%.2f", value)
+}
+
 func renderPage(w http.ResponseWriter, templateFile string, data interface{}) {
     files := append(baseTemplates, templateFile)
-    templates := template.Must(template.ParseFiles(files...))
+    funcMap := template.FuncMap {
+        "fCurrency": formatCurrency,
+    }
+    templateWithFuncMap := template.New("").Funcs(funcMap)
+    templates := template.Must(templateWithFuncMap.ParseFiles(files...))
     templates.ExecuteTemplate(w, "master", data)
 }
 

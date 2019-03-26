@@ -14,9 +14,9 @@
         {{ range $key, $value := . }}
             <tr>
                 <td>{{ $value.UnitItem.Name }}</td>
-                <td>{{ $value.UnitItem.Price }}</td>
+                <td>{{ $value.UnitItem.Price | fCurrency }}</td>
                 <td>{{ $value.Quantity }}</td>
-                <td>{{ $value.Total | printf "%.2f" }}</td>
+                <td>{{ $value.Total | fCurrency }}</td>
             </tr>
         {{ end }}
     </table>
