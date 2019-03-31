@@ -29,7 +29,7 @@ func addItem(w http.ResponseWriter, r *http.Request) {
     if cart[itemID] == nil {
         cart[itemID] = &cartItem {
             ID: itemID,
-            UnitItem: allItems[itemID],
+            UnitItem: *allItems[itemID],
             Quantity: int(quantity),
             Total: totalPrice,
         }
